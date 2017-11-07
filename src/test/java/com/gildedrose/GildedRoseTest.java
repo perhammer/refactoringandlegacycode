@@ -256,4 +256,48 @@ public class GildedRoseTest {
         assertEquals(-2, app.items[0].sellIn);
         assertEquals(0, app.items[0].quality);
     }
+
+    @Ignore
+    @Test
+    public void testConjuredItemBeforeSellDate() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 10, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Ignore
+    @Test
+    public void testConjuredItemOnSellDate() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(6, app.items[0].quality);
+    }
+
+    @Ignore
+    @Test
+    public void testConjuredItemAfterSellDate() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", -1, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(-2, app.items[0].sellIn);
+        assertEquals(6, app.items[0].quality);
+    }
+
+    @Ignore
+    @Test
+    public void testConjuredItemOfZeroQuality() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 4, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(3, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
 }
