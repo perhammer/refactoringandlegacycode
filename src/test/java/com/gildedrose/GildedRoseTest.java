@@ -119,32 +119,32 @@ public class GildedRoseTest {
 
     @Test
     public void testSulfurasBeforeSellDate() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 5, 5) };
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 5, 80) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         assertEquals(5, app.items[0].sellIn);
-        assertEquals(5, app.items[0].quality);
+        assertEquals(80, app.items[0].quality);
     }
 
     @Test
     public void testSulfurasOnSellDate() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 5) };
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 80) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         assertEquals(0, app.items[0].sellIn);
-        assertEquals(5, app.items[0].quality);
+        assertEquals(80, app.items[0].quality);
     }
 
     @Test
     public void testSulfurasAfterSellDate() {
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 5) };
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 80) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name);
         assertEquals(-1, app.items[0].sellIn);
-        assertEquals(5, app.items[0].quality);
+        assertEquals(80, app.items[0].quality);
     }
 
     @Test
