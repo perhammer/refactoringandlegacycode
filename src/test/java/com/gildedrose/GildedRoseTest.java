@@ -8,6 +8,46 @@ import org.junit.Test;
 public class GildedRoseTest {
 
     @Test
+    public void testNormalItemBeforeSellDate() {
+        Item[] items = new Item[] { new Item("Normal", 10, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(9, app.items[0].quality);
+    }
+
+    @Test
+    public void testNormalItemOnSellDate() {
+        Item[] items = new Item[] { new Item("Normal", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    public void testNormalItemAfterSellDate() {
+        Item[] items = new Item[] { new Item("Normal", -1, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(-2, app.items[0].sellIn);
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    public void testNormalItemOfZeroQuality() {
+        Item[] items = new Item[] { new Item("Normal", 4, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Normal", app.items[0].name);
+        assertEquals(3, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
     public void testBrieBeforeSellDate() {
         Item[] items = new Item[] { new Item("Aged Brie", 10, 10) };
         GildedRose app = new GildedRose(items);
